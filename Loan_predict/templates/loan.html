@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{
+  font-family: Calibri, Helvetica, sans-serif;
+  background-color: pink;
+}
+.container {
+    padding: 50px;
+  background-color: lightblue;
+}
+
+input[type=text], input[type=password], textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+input[type=text]:focus, input[type=password]:focus {
+  background-color: orange;
+  outline: none;
+}
+ div {
+            padding: 10px 0;
+         }
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+   width: 100%;
+  opacity: 0.9;
+}
+.registerbtn:hover {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+
+<form method="post" enctype="multipart/form-data" action="predictLoan">
+    {% csrf_token %}
+  <div class="container">
+  <center>  <h1> Loan Prediction</h1> </center>
+  <hr>
+      <div>
+<label>
+Gender :
+</label><br>
+<input type="radio" value=1 name="gender" checked > Male
+<input type="radio" value=0 name="gender"> Female
+<input type="radio" value=-1 name="gender"> Other
+
+</div>
+     <div>
+<label>
+Married :
+</label><br>
+<input type="radio" value=1 name="married" checked > Married
+<input type="radio" value=0 name="married"> UnMarried
+</div>
+  <div>
+  <label> Dependents: </label>
+<input type="number" value={{info.Dependents}} name="dependents" placeholder= "" size="15"/>
+    </div>
+       <div>
+<label>
+Education :
+</label><br>
+<input type="radio" value=1 name="education" checked > Yes
+<input type="radio" value=0 name="education"> No
+</div>
+        <div>
+<label>
+Self-Employed :
+</label><br>
+<input type="radio" value=1 name="self_employed" checked >Yes
+<input type="radio" value=0 name="self_employed"> No
+
+</div>
+    <div>
+  <label> Applicant Income: </label>
+<input type="number" name="applicantIncome" value={{info.ApplicantIncome}}  placeholder= "" size="15"/>
+    </div>
+    <div>
+  <label> Co Applicant Income: </label>
+<input type="number" name="coappIn"  value={{info.CoApplicantIncome}} placeholder= "" size="15"/>
+    </div>
+    <div>
+  <label> Loan Amount: </label>
+<input type="number" name="loanamount" value={{info.LoanAmount}} placeholder= "" size="15"/>
+    </div>
+    <div>
+  <label> Loan Amount Term: </label>
+<input type="number" name="loanAmountTerm" value={{info.Loan_Amount_Term}} placeholder= "" size="15"/>
+    </div>
+    <div>
+  <label> Credit History: </label>
+<input type="number" name="creditHistory" value={{info.Credit_History}} placeholder= "" size="15"/>
+    </div>
+    <div>
+  <label> Property Area : </label>
+<input type="number" name="propertyArea" value={{info.Property_Area}} placeholder= "" size="15"/>
+       
+        {% if a is 1 %}
+        <h1>Your loan request has been accepted</h1>
+        {{ info }}
+        {% elif a is 0 %}
+        <h1>Your loan request has not been accepted</h1>
+
+        {% endif %}
+
+    </div>
+  <div>
+
+</div>
+
+
+
+
+    <button type="submit" class="registerbtn">Submit</button>
+  </div>
+</form>
+</body>
+</html>
